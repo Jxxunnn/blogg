@@ -2,19 +2,51 @@
   text-align: center;
 }
 
-.nav--black {
-  background: black;
-  width: 100%;
-  display: flex;
-  color: white;
-  padding: 20px;
-  font-weight: 600;
-  font-size: 20px;
-}
-
 .list {
   margin-top: 30px;
   text-align: left;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.publish {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.publish input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 80%;
+  border: 1px solid grey;
+}
+.publish button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+}
+.navboot {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.navboot__title {
+  font-size: 20px;
+}
+.jumbotron {
+  padding: 40px;
+  background-image: url(./background.jpg);
+  background-size: cover;
+  color: white;
+}
+.jumbotron a {
+  background-color: royalblue;
+  padding: 10px;
+  border-radius: 5px;
+}
+.card {
+  border: none;
+}
+.card p {
+  margin-bottom: 8px;
 }
