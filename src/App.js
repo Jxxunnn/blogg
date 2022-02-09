@@ -6,6 +6,7 @@ import { Link, Route, Switch } from "react-router-dom";
 
 import "./App.css";
 import Data from "./data.js";
+import Detail from "./Detail.js";
 
 function App() {
   /* let [글제목, 글제목변경] = useState([
@@ -18,44 +19,35 @@ function App() {
   let [몇번째모달, 몇번째모달변경] = useState(0);
   let [입력값, 입력값변경] = useState(""); */
   let [shoes, shoes변경] = useState(Data);
-
+  /* 
   function 따봉추가(i) {
     let array = [...따봉];
     array[i]++;
     따봉변경(array);
   }
-
+ */
   return (
     <div className="App">
       <NavBoot></NavBoot>
-      <Route exact path="/">
-        <Jumbotron></Jumbotron>
-        <div className="container">
-          <div className="row">
-            {shoes.map((a, i) => {
-              return <Card shoes={shoes[i]} i={i} key={i}></Card>;
-            })}
-          </div>
-        </div>
-      </Route>
-      <Route path="/detail">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <img
-                src="https://codingapple1.github.io/shop/shoes1.jpg"
-                width="100%"
-              />
-            </div>
-            <div className="col-md-6 mt-4">
-              <h4 className="pt-5">상품명</h4>
-              <p>상품설명</p>
-              <p>120000원</p>
-              <button className="btn btn-danger">주문하기</button>
+      <Switch>
+        <Route path="/detail/:id">
+          <Detail shoes={shoes}></Detail>
+        </Route>
+
+        <Route path="/">
+          <Jumbotron></Jumbotron>
+          <div className="container">
+            <div className="row">
+              {shoes.map((a, i) => {
+                return <Card shoes={shoes[i]} i={i} key={i}></Card>;
+              })}
             </div>
           </div>
-        </div>
-      </Route>
+        </Route>
+        <Route path="/:id">
+          <div>새로 만든 route입니다</div>
+        </Route>
+      </Switch>
 
       {/*   {글제목.map((a, i) => {
         return (
@@ -154,8 +146,12 @@ function NavBoot() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav.Link href="#home">
+              <Link to="/">Home</Link>
+            </Nav.Link>
+            <Nav.Link href="#link">
+              <Link to="/Detail">Detail</Link>
+            </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

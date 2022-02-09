@@ -5,7 +5,6 @@ let data = [
     content: "Born in France",
     price: 120000,
   },
-
   {
     id: 1,
     title: "Red Knit",

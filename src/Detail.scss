@@ -1,0 +1,32 @@
+.my-alert {
+  background: #eeeeee;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+
+.my-alert2 {
+  @extend .my-alert;
+  background: yellow;
+}
+.my-alert p {
+  margin-bottom: 0;
+}
+
+/* $메인칼라: green;
+$폰트사이즈: 50px;
+
+.red {
+  color: $메인칼라;
+  font-size: $폰트사이즈;
+}
+div.container {
+  h4 {
+    color: green;
+  }
+  p {
+    color: Red;
+  }
+} */
