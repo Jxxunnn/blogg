@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import "./Detail.scss";
 
@@ -6,18 +6,27 @@ function Detail(props) {
   let history = useHistory();
   let { id } = useParams();
   let 찾은상품 = props.shoes.find((상품) => 상품.id == id);
+  let [알림창, 알림창변경] = useState(true);
+  let [입력값, 입력값변경] = useState("");
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      알림창변경(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <div className="container">
-      <div>
+      {알림창 == true ? (
         <div className="my-alert">
-          <p>재고가 얼마 남지 않았습니다</p>
+          <p>재고가 얼마 남지 않았습니다.</p>
         </div>
-      </div>
-      <div>
-        <div className="my-alert2">
-          <p>재고가 얼마 남지 않았습니다</p>
-        </div>
-      </div>
+      ) : null}
+
       <div className="row">
         <div className="col-md-6">
           <img

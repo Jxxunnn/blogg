@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
+import axios from "axios";
 
 import "./App.css";
 import Data from "./data.js";
@@ -43,6 +44,21 @@ function App() {
               })}
             </div>
           </div>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              axios
+                .get("https://codingapple1.github.io/shop/data2.json")
+                .then((result) => {
+                  console.log(result.data);
+                })
+                .catch(() => {
+                  console.log(2);
+                });
+            }}
+          >
+            더보기
+          </button>
         </Route>
         <Route path="/:id">
           <div>새로 만든 route입니다</div>
@@ -146,11 +162,11 @@ function NavBoot() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">
-              <Link to="/">Home</Link>
+            <Nav.Link as={Link} to="/" href="#home">
+              Home
             </Nav.Link>
-            <Nav.Link href="#link">
-              <Link to="/Detail">Detail</Link>
+            <Nav.Link as={Link} to="/Detail" href="#link">
+              Detail
             </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
