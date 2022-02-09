@@ -10,29 +10,15 @@ import Data from "./data.js";
 import Detail from "./Detail.js";
 
 function App() {
-  /* let [글제목, 글제목변경] = useState([
-    "남자 코트 추천",
-    "강남 우동 맛집",
-    "여자 코트 추천",
-  ]);
-  let [따봉, 따봉변경] = useState([0, 0, 0]);
-  let [모달, 모달변경] = useState(false);
-  let [몇번째모달, 몇번째모달변경] = useState(0);
-  let [입력값, 입력값변경] = useState(""); */
   let [shoes, shoes변경] = useState(Data);
-  /* 
-  function 따봉추가(i) {
-    let array = [...따봉];
-    array[i]++;
-    따봉변경(array);
-  }
- */
+  let [재고, 재고변경] = useState([10, 11, 12]);
+
   return (
     <div className="App">
       <NavBoot></NavBoot>
       <Switch>
         <Route path="/detail/:id">
-          <Detail shoes={shoes}></Detail>
+          <Detail shoes={shoes} 재고={재고}></Detail>
         </Route>
 
         <Route path="/">
@@ -50,10 +36,10 @@ function App() {
               axios
                 .get("https://codingapple1.github.io/shop/data2.json")
                 .then((result) => {
-                  console.log(result.data);
+                  shoes변경([...shoes, ...result.data]);
                 })
                 .catch(() => {
-                  console.log(2);
+                  console.log("실패했어요");
                 });
             }}
           >
@@ -64,53 +50,6 @@ function App() {
           <div>새로 만든 route입니다</div>
         </Route>
       </Switch>
-
-      {/*   {글제목.map((a, i) => {
-        return (
-          <div className="list" key={i}>
-            <h3
-              onClick={() => {
-                모달변경(!모달);
-                몇번째모달변경(i);
-              }}
-            >
-              {a}
-              <span
-                onClick={() => {
-                  따봉추가(i);
-                }}
-              >
-                ❤
-              </span>
-              {따봉[i]}
-            </h3>
-            <p>2월 17일 발행</p>
-            <hr />
-          </div>
-        );
-      })}
-      <div className="publish">
-        <input
-          onChange={(e) => {
-            입력값변경(e.target.value);
-          }}
-        />
-        <button
-          onClick={() => {
-            let array = [...글제목];
-            array.push(입력값);
-            글제목변경(array);
-            let array2 = [...따봉];
-            array2.push(0);
-            따봉변경(array2);
-          }}
-        >
-          저장
-        </button>
-      </div>
-      {모달 == true ? (
-        <Modal 글제목={글제목} 몇번째모달={몇번째모달}></Modal>
-      ) : null} */}
     </div>
   );
 }
