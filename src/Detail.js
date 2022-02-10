@@ -12,6 +12,7 @@ function Detail(props) {
   let [알림창, 알림창변경] = useState(true);
   let [입력값, 입력값변경] = useState("");
   let [누른탭, 누른탭변경] = useState(0);
+  let [스위치, 스위치변경] = useState(false);
 
   let 재고 = useContext(재고context);
 
@@ -71,6 +72,7 @@ function Detail(props) {
           <Nav.Link
             eventKey="link-0"
             onClick={() => {
+              스위치변경(false);
               누른탭변경(0);
             }}
           >
@@ -81,6 +83,7 @@ function Detail(props) {
           <Nav.Link
             eventKey="link-1"
             onClick={() => {
+              스위치변경(false);
               누른탭변경(1);
             }}
           >
@@ -88,14 +91,17 @@ function Detail(props) {
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      <CSSTransition in={true} classNames="wow" timeout={500}>
-        <TabContent 누른탭={누른탭}></TabContent>
+      <CSSTransition in={스위치} classNames="wow" timeout={500}>
+        <TabContent 누른탭={누른탭} 스위치변경={스위치변경}></TabContent>
       </CSSTransition>
     </div>
   );
 }
 
 function TabContent(props) {
+  useEffect(() => {
+    props.스위치변경(true);
+  });
   if (props.누른탭 === 0) {
     return <div>0번째 내용입니다</div>;
   } else if (props.누른탭 === 1) {

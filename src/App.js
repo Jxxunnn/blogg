@@ -8,6 +8,7 @@ import axios from "axios";
 import "./App.css";
 import Data from "./data.js";
 import Detail from "./Detail.js";
+import Cart from "./Cart.js";
 
 export let 재고context = React.createContext();
 
@@ -24,7 +25,9 @@ function App() {
             <Detail shoes={shoes} 재고={재고}></Detail>
           </재고context.Provider>
         </Route>
-
+        <Route path="/cart">
+          <Cart></Cart>
+        </Route>
         <Route path="/">
           <Jumbotron></Jumbotron>
           <div className="container">
@@ -52,6 +55,7 @@ function App() {
             더보기
           </button>
         </Route>
+
         <Route path="/:id">
           <div>새로 만든 route입니다</div>
         </Route>
