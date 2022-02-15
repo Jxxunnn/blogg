@@ -9,6 +9,7 @@ import "./App.css";
 import Data from "./data.js";
 import Detail from "./Detail.js";
 import Cart from "./Cart.js";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export let 재고context = React.createContext();
 
@@ -22,7 +23,7 @@ function App() {
       <Switch>
         <Route path="/detail/:id">
           <재고context.Provider value={재고}>
-            <Detail shoes={shoes} 재고={재고}></Detail>
+            <Detail shoes={shoes} 재고={재고} 재고변경={재고변경}></Detail>
           </재고context.Provider>
         </Route>
         <Route path="/cart">
@@ -66,9 +67,16 @@ function App() {
 
 function Card(props) {
   let 재고 = useContext(재고context);
+  let history = useHistory();
 
   return (
-    <div className="col-md-4" className="card">
+    <div
+      className="col-md-4"
+      className="card"
+      onClick={() => {
+        history.push(`/detail/${props.shoes.id}`);
+      }}
+    >
       <img
         src={`https://codingapple1.github.io/shop/shoes${props.i + 1}.jpg`}
         width="100%"

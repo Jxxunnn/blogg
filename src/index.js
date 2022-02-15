@@ -18,19 +18,27 @@ function reducer2(state = alert초기값, 액션) {
   }
 }
 
-let 초기값 = [
-  { id: 0, name: "멋진신발", quan: 2 },
-  { id: 1, name: "멋진신발2", quan: 3 },
-];
+let 초기값 = [];
 
 function reducer(state = 초기값, 액션) {
-  if (액션.type === "수량증가") {
+  if (액션.type === "항목추가") {
     let copy = [...state];
-    copy[0].quan++;
+    let found = copy.findIndex((a) => {
+      return a.id == 액션.payload.id;
+    });
+    if (found >= 0) {
+      copy[found].quan++;
+    } else {
+      copy.push(액션.payload);
+    }
     return copy;
   } else if (액션.type === "수량감소") {
     let copy = [...state];
-    copy[0].quan--;
+    if (copy[액션.payload].quan > 0) {
+      copy[액션.payload].quan--;
+    } else if (copy[액션.payload].quan < 0) {
+      return;
+    }
     return copy;
   } else {
     return state;
